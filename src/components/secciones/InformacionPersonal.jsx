@@ -2,85 +2,122 @@ import { React } from "react";
 
 const InformacionPersonal = ({ formData, handleChange, errores }) => {
   return (
-    <section>
-      <h3 className="text-xl font-semibold mb-4">Informacion Personal</h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <input
-          name="nombre"
-          placeholder="Nombre"
-          value={formData.nombre}
-          onChange={handleChange}
-          className="border p-2 rounded"
-        />
-        {errores.nombre && (<p className="text-red-500">{errores.nombre}</p>)}
+    <section className="section-container">
+      <h3 className="section-title">Información Personal</h3>
+      <div className="section-grid">
+        <div className="field-container">
+          <label className="field-label">Nombre</label>
+          <input
+            name="nombre"
+            placeholder="Nombre"
+            value={formData.nombre}
+            onChange={handleChange}
+            className={`field-input ${
+              errores.nombre ? "field-input-error" : ""
+            }`}
+          />
+          {errores.nombre && <p className="field-error">{errores.nombre}</p>}
+        </div>
 
-        <input
-          name="apellido"
-          placeholder="Apellido"
-          value={formData.apellido}
-          onChange={handleChange}
-          className="border p-2 rounded"
-        />
-        {errores.apellido && (<p className="text-red-500">{errores.apellido}</p>)}
+        <div className="field-container">
+          <label className="field-label">Apellido</label>
+          <input
+            name="apellido"
+            placeholder="Apellido"
+            value={formData.apellido}
+            onChange={handleChange}
+            className={`field-input ${
+              errores.apellido ? "field-input-error" : ""
+            }`}
+          />
+          {errores.apellido && (
+            <p className="field-error">{errores.apellido}</p>
+          )}
+        </div>
 
-        <input
-          name="identificacion"
-          placeholder="Identificación"
-          value={formData.identificacion}
-          onChange={handleChange}
-          className="border p-2 rounded"
-        />
-        {errores.identificacion && (
-          <p className="text-red-500">{errores.identificacion}</p>
-        )}
+        <div className="field-container">
+          <label className="field-label">Identificación</label>
+          <input
+            name="identificacion"
+            placeholder="Identificación"
+            value={formData.identificacion}
+            onChange={handleChange}
+            className={`field-input ${
+              errores.identificacion ? "field-input-error" : ""
+            }`}
+          />
+          {errores.identificacion && (
+            <p className="field-error">{errores.identificacion}</p>
+          )}
+        </div>
 
-        <select
-          name="genero"
-          value={formData.genero}
-          onChange={handleChange}
-          className="border p-2 rounded">
-          <option value="">Selecione un Genero</option>
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-        </select>
-        {errores.genero && (<p className="text-red-500">{errores.genero}</p>)}
+        <div className="field-container">
+          <label className="field-label">Genero</label>
+          <select
+            name="genero"
+            value={formData.genero}
+            onChange={handleChange}
+            className={`field-input ${
+              errores.genero ? "field-input-error" : ""
+            }`}>
+            <option value="">Selecione un Genero</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+          </select>
+          {errores.genero && <p className="field-error">{errores.genero}</p>}
+        </div>
 
+        <div className="field-container">
+          <label className="field-label">Fecha de Nacimiento</label>
+          <input
+            type="date"
+            name="fechaNacimiento"
+            value={formData.fechaNacimiento || ""}
+            onChange={handleChange}
+            className={`field-input ${
+              errores.fechaNacimiento ? "field-input-error" : ""
+            }`}
+          />
+          {errores.fechaNacimiento && (
+            <p className="field-error">{errores.fechaNacimiento}</p>
+          )}
+        </div>
 
-        <input
-          type="date"
-          name="fechaNacimiento"
-          value={formData.fechaNacimiento || ""}
-          onChange={handleChange}
-          className="border p-2 rounded"
-        />
-        {errores.fechaNacimiento && (
-          <p className="text-red-500">{errores.fechaNacimiento}</p>
-        )}
+        <div className="field-container">
+          <label className="field-label">Teléfono</label>
+          <input
+            name="telefono"
+            placeholder="Teléfono"
+            value={formData.telefono}
+            onChange={handleChange}
+            className={`field-input ${
+              errores.telefono ? "field-input-error" : ""
+            }`}
+          />
+          {errores.telefono && (
+            <p className="field-error">{errores.telefono}</p>
+          )}
+        </div>
 
-        <input
-          name="telefono"
-          placeholder="Teléfono"
-          value={formData.telefono}
-          onChange={handleChange}
-          className="border p-2 rounded"
-        />
-        {errores.telefono && (<p className="text-red-500">{errores.telefono}</p>)}
-
-        <select
-          name="estadoCivil"
-          value={formData.estadoCivil}
-          onChange={handleChange}
-          className="border p-2 rounded">
-          <option value="">Seleccione un Estado Civil</option>
-          <option value="Soltero">Soltero/a</option>
-          <option value="Casado">Casado/a</option>
-          <option value="Divorciado">Divorciado/a</option>
-          <option value="Viudo">Viudo/a</option>
-        </select>
-        {errores.estadoCivil && (
-          <p className="text-red-500">{errores.estadoCivil}</p>
-        )}
-
+        <div className="field-container">
+          <label className="field-label">Estado Civil</label>
+          <select
+            name="estadoCivil"
+            value={formData.estadoCivil}
+            onChange={handleChange}
+            className={`field-input ${
+              errores.estadoCivil ? "field-input-error" : ""
+            }`}>
+            <option value="">Seleccione un Estado Civil</option>
+            <option value="Soltero">Soltero/a</option>
+            <option value="Casado">Casado/a</option>
+            <option value="Divorciado">Divorciado/a</option>
+            <option value="Viudo">Viudo/a</option>
+          </select>
+          {errores.estadoCivil && (
+            <p className="field-error">{errores.estadoCivil}</p>
+          )}
+        </div>
       </div>
     </section>
   );

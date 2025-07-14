@@ -10,45 +10,50 @@ const Servicios = ({ formData, handleChange, errores }) => {
   ];
 
   return (
-    <section className="mb-6">
-      <h3 className="text-xl font-semibold mb-4">Servicios</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h4 className="font-medium mb-2">Servicios de Comunidad</h4>
-          {serviciosComunidad.map((serv) => (
-            <label key={serv} className="flex items-center gap-2 mb-1">
-              <input
-                type="checkbox"
-                name="serviciosComunidad"
-                value={serv}
-                checked={(formData.serviciosComunidad || []).includes(serv)}
-                onChange={handleChange}
-              />
-              {errores.serviciosComunidad && <p className="text-red-500">{errores.serviciosComunidad}</p>}
-              {serv}
-            </label>
-            
-            
-          ))}
+    <section className="section-container">
+      <h3 className="section-title">Servicios</h3>
+      <div className="services-container">
+        <div className="service-section">
+          <h4 className="service-title">Servicios de Comunidad</h4>
+          <div className="service-list">
+            {serviciosComunidad.map((serv) => (
+              <label key={serv} className="service-item">
+                <input
+                  type="checkbox"
+                  name="serviciosComunidad"
+                  value={serv}
+                  checked={(formData.serviciosComunidad || []).includes(serv)}
+                  onChange={handleChange}
+                  className="service-checkbox"
+                />
+                <span className="service-label">{serv}</span>
+              </label>
+            ))}
+          </div>
         </div>
 
-        <div>
-          <h4 className="font-medium mb-2">Servicios de Parroquia</h4>
-          {serviciosParroquia.map((serv) => (
-            <label key={serv} className="flex items-center gap-2 mb-1">
-              <input
-                type="checkbox"
-                name="serviciosParroquia"
-                value={serv}
-                checked={(formData.serviciosParroquia || []).includes(serv)}
-                onChange={handleChange}
-              />
-              {errores.serviciosParroquia && <p className="text-red-500">{errores.serviciosParroquia}</p>}
-              {serv}
-            </label>
-          ))}
+        <div className="service-section">
+          <h4 className="service-title">Servicios de Parroquia</h4>
+          <div className="service-list">
+            {serviciosParroquia.map((serv) => (
+              <label key={serv} className="service-item">
+                <input
+                  type="checkbox"
+                  name="serviciosParroquia"
+                  value={serv}
+                  checked={(formData.serviciosParroquia || []).includes(serv)}
+                  onChange={handleChange}
+                  className="service-checkbox"
+                />
+                <span className="service-label">{serv}</span>
+              </label>
+            ))}
+          </div>
         </div>
       </div>
+      {errores.serviciosComunidad && (
+        <p className="field-error">{errores.serviciosComunidad}</p>
+      )}
     </section>
   );
 };
