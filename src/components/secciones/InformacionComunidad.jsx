@@ -7,35 +7,36 @@ const InformacionComunidad = ({ formData, handleChange, errores }) => {
       <h3 className="section-title">Información de Comunidad</h3>
       <div className="section-grid">
         <div className="field-container">
-          <label className="field-label">Comunidad</label>
+          <label className="field-label">Numero Comunidad</label>
           <input
-            name="comunidad"
-            placeholder="Comunidad"
-            value={formData.comunidad}
+            name="numeroComunidad"
+            placeholder="Numero Comunidad"
+            value={formData.numeroComunidad}
             onChange={handleChange}
             className={`field-input ${
-              errores.comunidad ? "field-input-error" : ""
+              errores.numeroComunidad ? "field-input-error" : ""
             }`}
           />
-          {errores.comunidad && (
-            <p className="field-error">{errores.comunidad}</p>
+          {errores.numeroComunidad && (
+            <p className="field-error">{errores.numeroComunidad}</p>
           )}
         </div>
 
         <div className="field-container">
           <label className="field-label">Etapa de la Comunidad</label>
-          <input
+          <select
             name="etapaComunidad"
-            placeholder="Etapa de la Comunidad"
             value={formData.etapaComunidad}
             onChange={handleChange}
             className={`field-input ${
               errores.etapaComunidad ? "field-input-error" : ""
             }`}
-          />
-          {errores.etapaComunidad && (
-            <p className="field-error">{errores.etapaComunidad}</p>
-          )}
+          >
+            <option value="">Seleccione una etapa</option>
+            <option value="Etapa 1">Etapa 1</option>
+            <option value="Etapa 2">Etapa 2</option>
+            <option value="Etapa 3">Etapa 3</option>
+          </select>
         </div>
 
         <div className="field-container">
