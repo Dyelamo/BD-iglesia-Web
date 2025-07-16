@@ -16,7 +16,7 @@ const FormularioRegistro = () => {
     telefono: "",
     estadoCivil: "",
     municipio: "",
-    parroquia: "",
+    // parroquia: "",
     zona: "",
     numeroComunidad: "",
     etapaComunidad: "",
