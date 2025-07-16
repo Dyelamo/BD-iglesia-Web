@@ -1,61 +1,78 @@
-import React from "react";
+import React, { use } from "react";
+import { useEffect } from "react";
+import { useStoreServicios } from "../../supabase/storeServicios";
+
 
 const Servicios = ({ formData, handleChange, errores }) => {
-  const serviciosComunidad = ["Coordinador", "Animador"];
+  const {
+    serviciosComunidad,
+    serviciosParroquia,
+    error,
+    loading,
+    fetchServicioParroquia,
+    fetchServiciosComunidad
+  } = useStoreServicios();
 
-  const serviciosParroquia = [
-    "Catequesis",
-    "Pastoral Juvenil",
-    "Pastoral Familiar",
-  ];
+  useEffect(() => {
+    fetchServiciosComunidad();
+    fetchServicioParroquia();
+  }, []);
+
+
 
   return (
     <section className="section-container">
       <h3 className="section-title">Servicios</h3>
       <div className="services-container">
+
+        {/* Servicios de Comunidad */}
         <div className="service-section">
           <h4 className="service-title">Servicios de Comunidad</h4>
-          <div className="service-list">
-            {serviciosComunidad.map((serv) => (
-              <label key={serv} className="service-item">
-                <input
-                  type="checkbox"
-                  name="serviciosComunidad"
-                  value={serv}
-                  checked={(formData.serviciosComunidad || []).includes(serv)}
-                  onChange={handleChange}
-                  className="service-checkbox"
-                />
-                <span className="service-label">{serv}</span>
-              </label>
+          <select
+            name="serviciosComunidad"
+            value={formData.serviciosComunidad}
+            onChange={handleChange}
+            className={`field-input ${errores.serviciosComunidad ? "field-input-error" : ""}`}
+          >
+            <option value="">Seleccione un Servicio Comunidad</option>
+            {serviciosComunidad?.map((servicio) => (
+              <option key={servicio.id_servicio} value={servicio.nombre_servicio}>
+                {servicio.nombre_servicio}
+              </option>
             ))}
-          </div>
+          </select>
+          {errores.serviciosComunidad && (
+            <p className="field-error">{errores.serviciosComunidad}</p>
+          )}
         </div>
 
+        {/* Servicios de Parroquia */}
         <div className="service-section">
           <h4 className="service-title">Servicios de Parroquia</h4>
-          <div className="service-list">
-            {serviciosParroquia.map((serv) => (
-              <label key={serv} className="service-item">
-                <input
-                  type="checkbox"
-                  name="serviciosParroquia"
-                  value={serv}
-                  checked={(formData.serviciosParroquia || []).includes(serv)}
-                  onChange={handleChange}
-                  className="service-checkbox"
-                />
-                <span className="service-label">{serv}</span>
-              </label>
+          <select
+            name="serviciosParroquia"
+            value={formData.serviciosParroquia}
+            onChange={handleChange}
+            className={`field-input ${errores.serviciosParroquia ? "field-input-error" : ""}`}
+          >
+            <option value="">Seleccione un Servicio Parroquia</option>
+            {serviciosParroquia?.map((servicio) => (
+              <option key={servicio.id_servicio} value={servicio.nombre_servicio}>
+                {servicio.nombre_servicio}
+              </option>
             ))}
-          </div>
+          </select>
+          {errores.serviciosParroquia && (
+            <p className="field-error">{errores.serviciosParroquia}</p>
+          )}
         </div>
+
+        {/* Error general */}
+        {error && <p className="field-error">Error al cargar servicios: {error}</p>}
       </div>
-      {errores.serviciosComunidad && (
-        <p className="field-error">{errores.serviciosComunidad}</p>
-      )}
     </section>
   );
 };
+
 
 export { Servicios };
