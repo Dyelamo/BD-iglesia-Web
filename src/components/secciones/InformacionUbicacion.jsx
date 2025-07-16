@@ -1,4 +1,3 @@
-import { React, use } from "react";
 import { useEffect } from "react";
 import { useStoreParroquias } from "../../supabase/storeParroquias";
 
@@ -7,9 +6,7 @@ const InformacionUbicacion = ({ formData, handleChange, errores }) => {
 
   const {
     parroquias,
-    fetchParroquias,
-    loading,
-    error,
+    fetchParroquias
   } = useStoreParroquias();
 
   useEffect(() => {
@@ -28,14 +25,15 @@ const InformacionUbicacion = ({ formData, handleChange, errores }) => {
             onChange={handleChange}
             className={`field-input ${errores.parroquia ? "field-input-error" : ""}`}
             >
+            
             <option value="">Seleccione una parroquia</option>
             {parroquias.map((parroquia) => (
               <option key={parroquia.id_parroquia} value={parroquia.nombre_parroquia}>
                 {parroquia.nombre_parroquia}
               </option>
             ))}
-            
           </select>
+          {errores.parroquia && <p className="field-error">{errores.parroquia}</p>}
         </div>
       </div>
     </section>

@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { supabase } from "./supabase.config";
-
+import { supabase } from "../supabase/supabase.config";
 
 export const useStorePersona = create((set) => ({
     persona: null,

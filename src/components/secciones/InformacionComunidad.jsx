@@ -8,10 +8,7 @@ import {useStoreEtapas} from "../../supabase/storeEtapas";
 const InformacionComunidad = ({ formData, handleChange, errores }) => {
 
   const { 
-    etapas, 
     fetchEtapas,
-    loading,
-    error,
   } = useStoreEtapas();
 
 
