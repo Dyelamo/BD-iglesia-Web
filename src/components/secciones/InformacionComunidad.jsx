@@ -1,8 +1,4 @@
 import { React } from "react";
-import { useEffect } from "react";
-
-
-import {useStoreEtapas} from "../../supabase/storeEtapas";
 
 
 const InformacionComunidad = ({ formData, handleChange, errores }) => {
@@ -26,18 +22,18 @@ const InformacionComunidad = ({ formData, handleChange, errores }) => {
       <h3 className="section-title">Información de Comunidad</h3>
       <div className="section-grid">
         <div className="field-container">
-          <label className="field-label">Numero de Comunidad</label>
+          <label className="field-label">Comunidad</label>
           <input
-            name="comunidad"
-            placeholder="Comunidad"
-            value={formData.comunidad}
+            name="numeroComunidad"
+            placeholder="Numero Comunidad"
+            value={formData.numeroComunidad}
             onChange={handleChange}
             className={`field-input ${
-              errores.comunidad ? "field-input-error" : ""
+              errores.numeroComunidad ? "field-input-error" : ""
             }`}
           />
-          {errores.comunidad && (
-            <p className="field-error">{errores.comunidad}</p>
+          {errores.numeroComunidad && (
+            <p className="field-error">{errores.numeroComunidad}</p>
           )}
         </div>
 

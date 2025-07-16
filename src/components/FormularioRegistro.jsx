@@ -5,6 +5,7 @@ import { InformacionUbicacion } from "./secciones/InformacionUbicacion";
 import { Servicios } from "./secciones/Servicios";
 import ProgresoBar from "../components/ProgresoBar";
 import { validarFormulario } from "../utils/validaciones";
+import Swal from "sweetalert2";
 
 const FormularioRegistro = () => {
   const [formData, setFormData] = useState({
@@ -21,8 +22,8 @@ const FormularioRegistro = () => {
     numeroComunidad: "",
     etapaComunidad: "",
     inicioComunidad: "",
-    servicioComunidad: [],
-    servicioParroquia: [],
+    serviciosComunidad: [],
+    serviciosParroquia: [],
   });
 
   const handleChange = (e) => {
@@ -30,9 +31,9 @@ const FormularioRegistro = () => {
 
     if (type === "checkbox") {
       const group =
-        name === "servicioComunidad"
-          ? "servicioComunidad"
-          : "servicioParroquia";
+        name === "serviciosComunidad"
+          ? "serviciosComunidad"
+          : "serviciosParroquia";
       const update = checked
         ? [...formData[group], value]
         : formData[group].filter((item) => item !== value);
@@ -52,12 +53,35 @@ const FormularioRegistro = () => {
 
     if (Object.keys(erroresValidados).length === 0) {
       console.log("Formulario enviado con éxito:", formData);
-      alert("Formulario enviado con éxito");
-    } else {
-      console.warn("Errores en el formulario:", erroresValidados);
-      //alert("Por favor, corrija los errores antes de enviar el formulario.");
-    }
+      Swal.fire({
+        icon: "success",
+        title: "¡Registro exitoso!",
+        text: "Tu información ha sido enviada correctamente.",
+        confirmButtonText: "Aceptar",
+        background: "#f0fdf4",
+        color: "#065f46",
+      });
+
+      setFormData({
+        nombre: "",
+        apellido: "",
+        identificacion: "",
+        genero: "",
+        fechaNacimiento: "",
+        telefono: "",
+        estadoCivil: "",
+        municipio: "",
+        parroquia: "",
+        zona: "",
+        numeroComunidad: "",
+        etapaComunidad: "",
+        inicioComunidad: "",
+        serviciosComunidad: [],
+        serviciosParroquia: [],
+      });
+      setErrors({});
   };
+}
 
   return (
     <div className="form-Container">
@@ -98,11 +122,8 @@ const FormularioRegistro = () => {
             />
 
             <div className="submit-container">
-              <button
-                type="submit"
-                className="submit-button">
+              <button type="submit" className="submit-button">
                 Guardar Registro
-                
               </button>
             </div>
           </div>

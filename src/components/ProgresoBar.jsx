@@ -1,13 +1,16 @@
 import React from "react";
 
 const ProgresoBar = ({ formData }) => {
-  const totalFields = 14;
+  const totalFields = Object.keys(formData).length;
   const filledFields = Object.entries(formData).reduce((acc, [, value]) => {
     if (Array.isArray(value)) return acc + (value.length > 0 ? 1 : 0);
     return acc + (value ? 1 : 0);
   }, 0);
 
-  const percentage = Math.round((filledFields / totalFields) * 100);
+  const percentage = Math.min(
+    Math.round((filledFields / totalFields) * 100),
+    100
+  );
 
   return (
     <div className="progress-container">
