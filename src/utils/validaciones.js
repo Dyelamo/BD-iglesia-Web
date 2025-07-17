@@ -21,16 +21,14 @@ export const validarFormulario = (formData) => {
 
     if (!formData.estadoCivil) errors.estadoCivil = "El estado civil es requerido.";
 
-    if (!formData.municipio) errors.municipio = "El municipio es requerido.";
-    if (!formData.parroquia) errors.parroquia = "La parroquia es requerida.";
-    if (!formData.zona) errors.zona = "La zona es requerida.";
-
     if (!formData.numeroComunidad.trim()) errors.numeroComunidad = "El número de comunidad es requerido.";
     else if (!/^\d+$/.test(formData.numeroComunidad)) errors.numeroComunidad = 'Solo se permiten números.';
 
     if (!formData.etapaComunidad) errors.etapaComunidad = "La etapa de la comunidad es requerida.";
 
     if (!formData.inicioComunidad) errors.inicioComunidad = "El inicio de la comunidad es requerido.";
+
+    if (!formData.parroquia) errors.parroquia = "La parroquia es requerida.";
 
     if (
     formData.serviciosComunidad.length === 0 &&

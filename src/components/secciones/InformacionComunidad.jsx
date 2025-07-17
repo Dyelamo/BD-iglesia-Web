@@ -4,10 +4,7 @@ import { React } from "react";
 const InformacionComunidad = ({ formData, handleChange, errores }) => {
 
   const { 
-    etapas, 
     fetchEtapas,
-    loading,
-    error,
   } = useStoreEtapas();
 
 
