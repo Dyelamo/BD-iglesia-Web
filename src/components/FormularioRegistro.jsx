@@ -50,7 +50,16 @@ const FormularioRegistro = () => {
 
   const enviarFormulario = async (formData) => {
     try {
-      const servicios = [...formData.serviciosComunidad, ...formData.serviciosParroquia];
+      const servicios = [
+        ...formData.serviciosComunidad.map((id) => ({
+          id_servicio: id,
+          id_parroquia: parseInt(formData.parroquia), 
+        })),
+        ...formData.serviciosParroquia.map((id) => ({
+          id_servicio: id,
+          id_parroquia: parseInt(formData.parroquia),
+        })),
+      ];
       console.log(servicios);
 
       const { error } = await supabase.rpc("registrar_persona", {
@@ -65,7 +74,7 @@ const FormularioRegistro = () => {
         _fecha_inicio: formData.inicioComunidad,
         _id_etapa: parseInt(formData.etapaComunidad),
         _servicios: servicios,
-        _id_parroquia: parseInt(formData.parroquia),
+        // _id_parroquia: parseInt(formData.parroquia),
       });
       console.log(formData);
 
