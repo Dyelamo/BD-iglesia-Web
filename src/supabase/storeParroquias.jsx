@@ -13,7 +13,7 @@ export const useStoreParroquias = create((set) => ({
         try {
             const { data, error } = await supabase.from("Parroquias").select("*");
             if (error) throw error;
-            console.log("Parroquias cargadas:", data);
+            // console.log("Parroquias cargadas:", data);
             set({ parroquias: data, loading: false });
         } catch (error) {
             set({ error: error.message, loading: false });

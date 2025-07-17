@@ -28,7 +28,7 @@ const InformacionUbicacion = ({ formData, handleChange, errores }) => {
             
             <option value="">Seleccione una parroquia</option>
             {parroquias.map((parroquia) => (
-              <option key={parroquia.id_parroquia} value={parroquia.nombre_parroquia}>
+              <option key={parroquia.id_parroquia} value={parroquia.id_parroquia}>
                 {parroquia.nombre_parroquia}
               </option>
             ))}
