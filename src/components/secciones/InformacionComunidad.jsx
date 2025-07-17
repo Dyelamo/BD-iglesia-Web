@@ -1,9 +1,11 @@
 import { React } from "react";
-
+import { useEffect } from "react";
+import { useStoreEtapas } from "../../supabase/storeEtapas";
 
 const InformacionComunidad = ({ formData, handleChange, errores }) => {
 
-  const { 
+  const {
+    etapas,
     fetchEtapas,
   } = useStoreEtapas();
 
@@ -44,7 +46,7 @@ const InformacionComunidad = ({ formData, handleChange, errores }) => {
           >
             <option value="">Seleccione una etapa</option>
             {etapas.map((etapa) => (
-              <option key={etapa.id_etapa} value={etapa.nombre_etapa}>
+              <option key={etapa.id_etapa} value={etapa.id_etapa}>
                 {etapa.nombre_etapa}
               </option>
             ))}

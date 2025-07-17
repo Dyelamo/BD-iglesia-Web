@@ -14,7 +14,7 @@ export const useStoreServicios = create((set) => ({
         try {
             const { data, error } = await supabase.from("Servicios").select("*").eq("tipo_servicio", 'Comunidad');;
             if (error) throw error;
-            console.log("Servicios cargados comunidad:", data);
+            // console.log("Servicios cargados comunidad:", data);
             set({ serviciosComunidad: data, loading: false });
         } catch (error) {
             set({ error: error.message, loading: false });
@@ -27,7 +27,7 @@ export const useStoreServicios = create((set) => ({
         try {
             const { data, error } = await supabase.from("Servicios").select("*").eq("tipo_servicio", 'Parroquia');
             if (error) throw error;
-            console.log("Servicios de parroquia cargados:", data);
+            // console.log("Servicios de parroquia cargados:", data);
             set({ serviciosParroquia: data, loading: false });
         } catch (error) {
             set({ error: error.message, loading: false });
