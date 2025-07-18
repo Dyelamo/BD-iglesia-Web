@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { InformacionPersonal } from "./secciones/InformacionPersonal";
-import { InformacionComunidad } from "./secciones/InformacionComunidad";
-import { InformacionUbicacion } from "./secciones/InformacionUbicacion";
-import { Servicios } from "./secciones/Servicios";
+import { InformacionPersonal } from "../components/secciones/InformacionPersonal";
+import { InformacionComunidad } from "../components/secciones/InformacionComunidad";
+import { InformacionUbicacion } from "../components/secciones/InformacionUbicacion";
+import { Servicios } from "../components/secciones/Servicios";
 import ProgresoBar from "../components/ProgresoBar";
 import { validarFormulario } from "../utils/validaciones";
 import Swal from "sweetalert2";
@@ -80,8 +80,8 @@ const FormularioRegistro = () => {
         serviciosParroquia: [],
       });
       setErrors({});
+    }
   };
-}
 
   return (
     <div className="form-Container">
