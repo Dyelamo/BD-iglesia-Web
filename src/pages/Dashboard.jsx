@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import "../styles/dashboard.css";
+import "../styles/dashboard_components.css"
+import "../styles/dashboard.css"
 import Estadisticas from "../components/Estadisticas";
 import  FiltroBusqueda  from "../components/filtroBusqueda";
 import  TarjetaRegistro  from "../components/TarjetaRegistro";
@@ -71,17 +72,17 @@ const Dashboard = () => {
         <Estadisticas registros={Filtrados}/>
         <FiltroBusqueda filtro={filtro} setFitro={setFitro}/>
 
-        <div className='registrosEncontardos'>
-            <h2>Registros encontrados ({Filtrados.length})</h2>
+        <div className='dashboard-resultados'>
+            <h2 className='dashboard-resultados-titulo'>Registros encontrados ({Filtrados.length})</h2>
             {Filtrados.length > 0 ?(
                 Filtrados.map((registro) => (
                    <TarjetaRegistro key={registro.id} data={registro}/>
                 ))
             ):( 
-                <div className='no resultados'>
+                <div className='dashboard-no-resultados'>
                     <p>No se encontro registros</p>
                 </div>
-            )};
+            )}
         </div>
     </div>
   );

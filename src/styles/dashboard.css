@@ -1,156 +1,242 @@
+/* Estilos generales del Dashboard */
 .dashboard-container {
   padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f5f7fa;
+  border-radius: 10px;
 }
 
 .dashboard-title {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #2c3e50;
 }
 
 .dashboard-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-resultados {
+  margin-top: 2rem;
+}
+
+.dashboard-resultados-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+.dashboard-no-resultados {
+  text-align: center;
+  padding: 2rem;
+  color: #999;
+  font-style: italic;
+}
+/* Buscador y filtros */
+.filtros-container {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   margin-bottom: 2rem;
+}
+
+.filtros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filtros-header h2 {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icono-filtro {
+  color: #3b82f6;
+}
+
+.btn-limpiar {
+  background-color: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.label-filtro {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input-busqueda {
+  width: 98%;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   font-size: 1rem;
+}
+
+.filtros-selectores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  flex: 1;
+}
+
+.filtro-item label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.filtro-item select {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+/* Tarjeta de registro */
+.tarjeta-container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border: 1px solid #eee;
+}
+
+.tarjeta-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tarjeta-col {
+  flex: 1;
+}
+
+.icono {
+  margin-right: 6px;
   color: #555;
 }
 
-.estadisticas-container {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.estadistica-card {
-  flex: 1;
-  min-width: 200px;
-  padding: 1rem;
-  border-radius: 10px;
-  color: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.estadistica-card.total {
-  background-color: #2563eb; /* azul */
-}
-
-.estadistica-card.mujeres {
-  background-color: #db2777; /* rosa */
-}
-
-.estadistica-card.hombres {
-  background-color: #16a34a; /* verde */
-}
-
-.estadistica-cifra {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 0.25rem;
-}
-
-.estadistica-subtexto {
-  font-size: 0.875rem;
-}
-
-.filtros-container {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-}
-
-.filtros-titulo {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.campo-filtro {
-  margin-bottom: 1rem;
+.genero-tag {
   display: inline-block;
-  width: 23%;
-  margin-right: 1%;
+  padding: 4px 8px;
+  margin-top: 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
 }
 
-.campo-filtro.full {
-  width: 100%;
+.femenino {
+  background-color: #4169e1;
 }
 
-.input-filtro,
-.campo-filtro select {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
+.masculino {
+  background-color: #228b22;
 }
 
-.boton-limpiar {
-  margin-top: 1rem;
-  text-align: right;
+.parroquia-nombre {
+  color: #1d4ed8;
+  font-weight: bold;
 }
 
-.boton-limpiar button {
-  background-color: transparent;
-  color: #333;
+.servicios-bloque {
+  margin-bottom: 8px;
+}
+
+.servicio-label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #f3f4f6;
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin: 2px;
+  font-size: 12px;
+}
+
+.badge.blue {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.badge.dark {
+  background-color: #374151;
+  color: white;
+}
+
+/* Badges */
+.badge-genero-masculino {
+  background-color: #3498db;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.badge-genero-femenino {
+  background-color: #e74c3c;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* Scroll personalizado para listas largas */
+.scrollable {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* Botones */
+.primary-button {
+  background-color: #2980b9;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.tarjeta-container {
-  background-color: white;
-  border-radius: 12px;
-  padding: 1.25rem;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
-  margin-bottom: 1rem;
-}
-
-.tarjeta-encabezado {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.tarjeta-nombre {
-  font-size: 1.1rem;
   font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-.icon {
-  margin-right: 6px;
+.primary-button:hover {
+  background-color: #21618c;
 }
-
-.tarjeta-lateral {
-  text-align: right;
-  font-weight: bold;
-  font-size: 0.95rem;
-}
-
-.tarjeta-info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.tarjeta-servicios {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.chip {
-  background-color: #eee;
-  padding: 4px 10px;
-  border-radius: 20px;
-  margin: 3px;
-  font-size: 0.8rem;
-  display: inline-block;
-}
-
-

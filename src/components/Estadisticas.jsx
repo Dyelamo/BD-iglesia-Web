@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/dashboard.css";
+import "../styles/dashboard_components.css";
 
 const Estadisticas = ({ registros }) => {
   const total = registros.length;
@@ -12,24 +13,24 @@ const Estadisticas = ({ registros }) => {
 
   return (
     <div className="estadisticas-container">
-      <div className="estadistica-card total">
+      <div className="stat-card card-total">
         <h3>Total Registros</h3>
-        <p className="estadistica-cifra">{total}</p>
-        <span className="estadistica-subtexto">Registros encontrados</span>
+        <p className="stat-count">{total}</p>
+        <span className="stat-subtext">Registros encontrados</span>
       </div>
 
-      <div className="estadistica-card mujeres">
+      <div className="stat-card card-mujeres">
         <h3>Mujeres</h3>
-        <p className="estadistica-cifra">{mujeres}</p>
-        <span className="estadistica-subtexto">
+        <p className="stat-count">{mujeres}</p>
+        <span className="stat-subtext">
           {calcularPorcentaje(mujeres)}% del total
         </span>
       </div>
 
-      <div className="estadistica-card hombres">
+      <div className="stat-card card-hombres">
         <h3>Hombres</h3>
-        <p className="estadistica-cifra">{hombres}</p>
-        <span className="estadistica-subtexto">
+        <p className="stat-count">{hombres}</p>
+        <span className="stat-subtext">
           {calcularPorcentaje(hombres)}% del total
         </span>
       </div>

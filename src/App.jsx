@@ -1,5 +1,6 @@
 import React from "react";
 import FormularioRegistro from "./pages/FormularioRegistro";
+import { Dashboard } from "./pages/Dashboard";
 
 function App() {
   return (

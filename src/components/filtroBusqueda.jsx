@@ -1,98 +1,115 @@
 import React from "react";
+import "../styles/dashboard.css";
+import { FaFilter, FaTimes } from "react-icons/fa";
 
-const FiltroBusquedad = ({
-  filtros = {
-    texto: "",
-    zona: "",
-    parroquia: "",
-    genero: "",
-    servicio: ""
-  },
-  onFiltroChange,
-  onBuscarTexto,
-  onLimpiar,
+const FiltrosBusqueda = ({
+  filtro,
+  setFitro,
   zonas = [],
   parroquias = [],
   servicios = [],
 }) => {
+  const handleChange = (e) => {
+    setFitro({
+      ...filtro,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const limpiarFiltros = () => {
+    setFitro({
+      nombre: "",
+      zona: "Todas las zonas",
+      parroquia: "Todas las parroquias",
+      genero: "Todos los géneros",
+      servicio: "Todos los servicios",
+    });
+  };
+
+  // Verificar si hay filtros activos
+  const filtrosActivos = Object.values(filtro).some((valor) => {
+    return (
+      valor !== "" &&
+      valor !== "Todas las zonas" &&
+      valor !== "Todas las parroquias" &&
+      valor !== "Todos los géneros" &&
+      valor !== "Todos los servicios"
+    );
+  });
+
   return (
     <div className="filtros-container">
-      <h2 className="filtros-titulo">Filtros de Búsqueda</h2>
-
-      {/* Texto */}
-      <div className="campo-filtro full">
-        <input
-          type="text"
-          placeholder="Buscar por Nombre, Apellido o Identificación"
-          value={filtros.texto}
-          onChange={(e) => onBuscarTexto(e.target.value)}
-          className="input-filtro"
-        />
+      <div className="filtros-header">
+        <h2>
+          <FaFilter className="icono-filtro" /> Filtros de Búsqueda
+        </h2>
+        {filtrosActivos && (
+          <button onClick={limpiarFiltros} className="btn-limpiar">
+            <FaTimes /> Limpiar Filtros
+          </button>
+        )}
       </div>
 
-      {/* Zona */}
-      <div className="campo-filtro">
-        <label>Zona</label>
-        <select
-          value={filtros.zona}
-          onChange={(e) => onFiltroChange("zona", e.target.value)}>
-          <option value="">Todas las zonas</option>
-          {zonas.map((z) => (
-            <option key={z} value={z}>
-              {z}
-            </option>
-          ))}
-        </select>
-      </div>
+      <label className="label-filtro">
+        Buscar por Nombre, Apellido o Identificación
+      </label>
+      <input
+        type="text"
+        placeholder="Escriba para buscar..."
+        name="nombre"
+        value={filtro.nombre}
+        onChange={handleChange}
+        className="input-busqueda"
+      />
 
-      {/* Parroquia */}
-      <div className="campo-filtro">
-        <label>Parroquia</label>
-        <select
-          value={filtros.parroquia}
-          onChange={(e) => onFiltroChange("parroquia", e.target.value)}>
-          <option value="">Todas las parroquias</option>
-          {parroquias.map((p) => (
-            <option key={p} value={p}>
-              {p}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className="filtros-selectores">
+        <div className="filtro-item">
+          <label>Zona</label>
+          <select name="zona" value={filtro.zona} onChange={handleChange}>
+            <option>Todas las zonas</option>
+            {zonas.map((zona) => (
+              <option key={zona}>{zona}</option>
+            ))}
+          </select>
+        </div>
 
-      {/* Género */}
-      <div className="campo-filtro">
-        <label>Género</label>
-        <select
-          value={filtros.genero}
-          onChange={(e) => onFiltroChange("genero", e.target.value)}>
-          <option value="">Todos los géneros</option>
-          <option value="Femenino">Femenino</option>
-          <option value="Masculino">Masculino</option>
-        </select>
-      </div>
+        <div className="filtro-item">
+          <label>Parroquia</label>
+          <select
+            name="parroquia"
+            value={filtro.parroquia}
+            onChange={handleChange}>
+            <option>Todas las parroquias</option>
+            {parroquias.map((p) => (
+              <option key={p}>{p}</option>
+            ))}
+          </select>
+        </div>
 
-      {/* Servicio */}
-      <div className="campo-filtro">
-        <label>Servicio</label>
-        <select
-          value={filtros.servicio}
-          onChange={(e) => onFiltroChange("servicio", e.target.value)}>
-          <option value="">Todos los servicios</option>
-          {servicios.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className="filtro-item">
+          <label>Género</label>
+          <select name="genero" value={filtro.genero} onChange={handleChange}>
+            <option>Todos los géneros</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+          </select>
+        </div>
 
-      {/* Botón Limpiar */}
-      <div className="boton-limpiar">
-        <button onClick={onLimpiar}>✖ Limpiar Filtros</button>
+        <div className="filtro-item">
+          <label>Servicio</label>
+          <select
+            name="servicio"
+            value={filtro.servicio}
+            onChange={handleChange}>
+            <option>Todos los servicios</option>
+            {servicios.map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );
 };
 
-export default FiltroBusquedad;
+export default FiltrosBusqueda;
