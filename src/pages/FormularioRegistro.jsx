@@ -105,10 +105,6 @@ const FormularioRegistro = () => {
         serviciosParroquia: [],
       });
       setErrors({});
-<<<<<<< HEAD:src/pages/FormularioRegistro.jsx
-    }
-  };
-=======
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -130,7 +126,6 @@ const FormularioRegistro = () => {
       enviarFormulario(formData); // ✅ Aquí se llama a Supabase
     }
   }
->>>>>>> main:src/components/FormularioRegistro.jsx
 
   return (
     <div className="form-Container">

@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import "../styles/dashboard_components.css"
 import "../styles/dashboard.css"
 import Estadisticas from "../components/Estadisticas";
 import  FiltroBusqueda  from "../components/filtroBusqueda";
 import  TarjetaRegistro  from "../components/TarjetaRegistro";
+import { useEffect } from 'react';
 
 
 const Dashboard = () => {
 
     const [registros, setRegistros] = useState([]);
-    const [filtro, setFitro] = useState({
-        zona: "",
-        parroquia: "",
-        genero:"",
-        sevicios: "",
-        buscar: ""
+    const [filtro, setFiltro] = useState({
+      nombre: "",
+      zona: "Todas las zonas",
+      parroquia: "Todas las parroquias",
+      genero: "Todos los géneros",
+      servicioComunidad: "Todos los servicios",
+      servicioParroquia: "Todos los servicios"
     });
+
     
     const [Filtrados, setFiltrados] = useState([]);
 
@@ -70,7 +73,7 @@ const Dashboard = () => {
       <p className="dashboard-subtitle">Gestión y consulta de registros comunitarios</p>
 
         <Estadisticas registros={Filtrados}/>
-        <FiltroBusqueda filtro={filtro} setFitro={setFitro}/>
+        <FiltroBusqueda filtro={filtro} setFitro={setFiltro}/>
 
         <div className='dashboard-resultados'>
             <h2 className='dashboard-resultados-titulo'>Registros encontrados ({Filtrados.length})</h2>
