@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { supabase } from "../supabase/supabase.config";
+import Swal from "sweetalert2";
 
 export const useStorePersona = create((set) => ({
     persona: null,
@@ -7,7 +8,5 @@ export const useStorePersona = create((set) => ({
     loading: false,
     currentPersona: null,
 
-    addPersona: async (personaData, infoComunidad, Parroquia, sercComunidad, sercParroquia) => {
-        
-    }
+    
 }))

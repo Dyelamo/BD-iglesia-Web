@@ -6,6 +6,7 @@ import { Servicios } from "../components/secciones/Servicios";
 import ProgresoBar from "../components/ProgresoBar";
 import { validarFormulario } from "../utils/validaciones";
 import Swal from "sweetalert2";
+import { supabase } from "../supabase/supabase.config";
 
 const FormularioRegistro = () => {
   const [formData, setFormData] = useState({
@@ -16,15 +17,17 @@ const FormularioRegistro = () => {
     fechaNacimiento: "",
     telefono: "",
     estadoCivil: "",
-    municipio: "",
-    // parroquia: "",
-    zona: "",
+    //municipio: "",
+    parroquia: "",
+    // zona: "",
     numeroComunidad: "",
     etapaComunidad: "",
     inicioComunidad: "",
     serviciosComunidad: [],
     serviciosParroquia: [],
   });
+
+  const [errores, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -35,33 +38,55 @@ const FormularioRegistro = () => {
           ? "serviciosComunidad"
           : "serviciosParroquia";
       const update = checked
-        ? [...formData[group], value]
-        : formData[group].filter((item) => item !== value);
+        ? [...formData[group], JSON.parse(value)]
+        : formData[group].filter((item) => item.id_servicio !== JSON.parse(value).id_servicio);
       setFormData({ ...formData, [group]: update });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
 
-  const [errores, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const erroresValidados = validarFormulario(formData);
-    setErrors(erroresValidados);
+  const enviarFormulario = async (formData) => {
+    try {
+      const servicios = [
+        ...formData.serviciosComunidad.map((id) => ({
+          id_servicio: id,
+          id_parroquia: parseInt(formData.parroquia), 
+        })),
+        ...formData.serviciosParroquia.map((id) => ({
+          id_servicio: id,
+          id_parroquia: parseInt(formData.parroquia),
+        })),
+      ];
+      console.log(servicios);
 
-    if (Object.keys(erroresValidados).length === 0) {
-      console.log("Formulario enviado con éxito:", formData);
+      const { error } = await supabase.rpc("registrar_persona", {
+        _identificacion: formData.identificacion,
+        _nombres: formData.nombre,
+        _apellidos: formData.apellido,
+        _genero: formData.genero,
+        _fecha_nacimiento: formData.fechaNacimiento,
+        _telefono: formData.telefono,
+        _estado_civil: formData.estadoCivil,
+        _numero_comunidad: parseInt(formData.numeroComunidad),
+        _fecha_inicio: formData.inicioComunidad,
+        _id_etapa: parseInt(formData.etapaComunidad),
+        _servicios: servicios,
+        // _id_parroquia: parseInt(formData.parroquia),
+      });
+      console.log(formData);
+
+      if (error) throw error;
+
       Swal.fire({
         icon: "success",
         title: "¡Registro exitoso!",
         text: "Tu información ha sido enviada correctamente.",
-        confirmButtonText: "Aceptar",
-        background: "#f0fdf4",
-        color: "#065f46",
       });
 
+      // Reset
       setFormData({
         nombre: "",
         apellido: "",
@@ -80,8 +105,32 @@ const FormularioRegistro = () => {
         serviciosParroquia: [],
       });
       setErrors({});
+<<<<<<< HEAD:src/pages/FormularioRegistro.jsx
     }
   };
+=======
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Error al registrar",
+        text: err.message,
+      });
+    }
+  };
+
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const erroresValidados = validarFormulario(formData);
+    setErrors(erroresValidados);
+
+    if (Object.keys(erroresValidados).length === 0) {
+      enviarFormulario(formData); // ✅ Aquí se llama a Supabase
+    }
+  }
+>>>>>>> main:src/components/FormularioRegistro.jsx
 
   return (
     <div className="form-Container">
@@ -131,6 +180,8 @@ const FormularioRegistro = () => {
       </form>
     </div>
   );
+
+  console.log(formData);
 };
 
 export default FormularioRegistro;
