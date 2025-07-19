@@ -19,5 +19,19 @@ export const useStoreParroquias = create((set) => ({
             set({ error: error.message, loading: false });
             alert("Error al cargar las parroquias: " + error.message);
         }
-    }
+    },
+
+    fetchZonas: async () => {
+        set({ loading: true, error: null });
+        try {
+            const { data, error } = await supabase.from("Zonas").select("*");
+            if (error) throw error;
+            // console.log("Zonas cargadas:", data);
+            set({ zonas: data, loading: false });
+        } catch (error) {
+            set({ error: error.message, loading: false });
+            alert("Error al cargar las zonas: " + error.message);
+        }
+    },
+    
 }))
