@@ -175,8 +175,6 @@ const FormularioRegistro = () => {
       </form>
     </div>
   );
-
-  console.log(formData);
 };
 
 export default FormularioRegistro;
