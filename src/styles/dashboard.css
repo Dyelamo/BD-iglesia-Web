@@ -46,12 +46,6 @@
   margin-bottom: 2rem;
 }
 
-.filtros-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
 
 .filtros-header h2 {
   font-size: 1.25rem;
@@ -116,52 +110,132 @@
   border: 1px solid #d1d5db;
 }
 
+.filtros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.filtros-header-right {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-descargar {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-descargar:hover {
+  background-color: #059669;
+}
+
 /* Tarjeta de registro */
 .tarjeta-container {
-  background-color: #fff;
+  background-color: white;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border: 1px solid #eee;
+  margin: 12px 0;
+  font-size: 13px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .tarjeta-header {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .tarjeta-col {
   flex: 1;
+  min-width: 200px;
+}
+
+.tarjeta-col h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tarjeta-col p {
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #333;
 }
 
 .icono {
-  margin-right: 6px;
-  color: #555;
+  font-size: 12px;
+  color: #444;
 }
 
 .genero-tag {
   display: inline-block;
-  padding: 4px 8px;
-  margin-top: 8px;
-  border-radius: 12px;
+  padding: 3px 8px;
   font-size: 12px;
-  font-weight: bold;
+  border-radius: 8px;
+  margin-top: 5px;
+  background-color: #e5e5e5;
+  color: #000;
+}
+
+.genero-tag.femenino {
+  background-color: #ee094e;
   color: white;
 }
 
-.femenino {
-  background-color: #4169e1;
+.genero-tag.masculino {
+  background-color: #1e40af;
+  color: white;
 }
 
-.masculino {
-  background-color: #228b22;
+.servicios-bloque {
+  margin-top: 8px;
 }
 
-.parroquia-nombre {
-  color: #1d4ed8;
+.servicio-label {
   font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+  margin: 2px 4px 2px 0;
+  white-space: nowrap;
+}
+
+.badge.blue {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.badge.dark {
+  background-color: #555;
+  color: white;
+}
+
+.badge.gris {
+  background-color: #e5e5e5;
+  color: #333;
 }
 
 .servicios-bloque {
@@ -173,24 +247,6 @@
   margin-bottom: 4px;
 }
 
-.badge {
-  display: inline-block;
-  background-color: #f3f4f6;
-  border-radius: 999px;
-  padding: 4px 10px;
-  margin: 2px;
-  font-size: 12px;
-}
-
-.badge.blue {
-  background-color: #3b82f6;
-  color: white;
-}
-
-.badge.dark {
-  background-color: #374151;
-  color: white;
-}
 
 /* Badges */
 .badge-genero-masculino {
@@ -239,4 +295,58 @@
 
 .primary-button:hover {
   background-color: #21618c;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-logo {
+  height: 40px;
+  width: auto;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.dashboard-tabs {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.dashboard-tab {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.active-tab {
+  background-color: white;
+  border-bottom: 3px solid #2563eb;
+}
+
+.usuario-info {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
 }
