@@ -56,19 +56,21 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
     );
   });
 
-  
-
   return (
     <div className="filtros-container">
       <div className="filtros-header">
         <h2>
           <FaFilter className="icono-filtro" /> Filtros de Búsqueda
         </h2>
-        {filtrosActivos && (
-          <button onClick={limpiarFiltros} className="btn-limpiar">
-            <FaTimes /> Limpiar Filtros
-          </button>
-        )}
+
+        <div className="filtros-header-right">
+          {filtrosActivos && (
+            <button onClick={limpiarFiltros} className="btn-limpiar">
+              <FaTimes /> Limpiar Filtros
+            </button>
+          )}
+          <button className="btn-descargar">📥 Descargar Registros</button>
+        </div>
       </div>
 
       <label className="label-filtro">
