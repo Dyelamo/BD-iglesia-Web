@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../styles/login.css";
 import {  FaLock, FaUser } from "react-icons/fa";
 
+import { useStoreUsuarios } from "../supabase/storeUsuarios";
+
 const imagenes = [
   "../../public/images/iglesia1.jpg",
   "../../public/images/iglesia2.jpg",
