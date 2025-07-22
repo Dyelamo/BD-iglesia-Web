@@ -25,7 +25,16 @@ export const useStorePersona = create((set) => ({
                 text: error.message,
             });
         }
+    },
+
+    obtenerTotalRegistros: async () => {
+
+    },
+
+    obtenerCantidadGeneros: async () => {
+        
     }
+
 
     
 }))
