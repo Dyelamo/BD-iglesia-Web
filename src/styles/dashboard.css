@@ -1,0 +1,352 @@
+/* Estilos generales del Dashboard */
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f5f7fa;
+  border-radius: 10px;
+}
+
+.dashboard-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #2c3e50;
+}
+
+.dashboard-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-resultados {
+  margin-top: 2rem;
+}
+
+.dashboard-resultados-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+.dashboard-no-resultados {
+  text-align: center;
+  padding: 2rem;
+  color: #999;
+  font-style: italic;
+}
+/* Buscador y filtros */
+.filtros-container {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+
+.filtros-header h2 {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icono-filtro {
+  color: #3b82f6;
+}
+
+.btn-limpiar {
+  background-color: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.label-filtro {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input-busqueda {
+  width: 98%;
+  padding: 0.8rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.filtros-selectores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  flex: 1;
+}
+
+.filtro-item label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.filtro-item select {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.filtros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.filtros-header-right {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-descargar {
+  background-color: #0780f1;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-descargar:hover {
+  background-color: #059669;
+}
+
+/* Tarjeta de registro */
+.tarjeta-container {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  font-size: 13px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.tarjeta-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tarjeta-col {
+  flex: 1;
+  min-width: 200px;
+}
+
+.tarjeta-col h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tarjeta-col p {
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #333;
+}
+
+.icono {
+  font-size: 12px;
+  color: #444;
+}
+
+.genero-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 8px;
+  margin-top: 5px;
+  background-color: #e5e5e5;
+  color: #000;
+}
+
+.genero-tag.femenino {
+  background-color: #ee094e;
+  color: white;
+}
+
+.genero-tag.masculino {
+  background-color: #1e40af;
+  color: white;
+}
+
+.servicios-bloque {
+  margin-top: 8px;
+}
+
+.servicio-label {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 12px;
+  margin: 2px 4px 2px 0;
+  white-space: nowrap;
+}
+
+.badge.blue {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.badge.dark {
+  background-color: #555;
+  color: white;
+}
+
+.badge.gris {
+  background-color: #e5e5e5;
+  color: #333;
+}
+
+.servicios-bloque {
+  margin-bottom: 8px;
+}
+
+.servicio-label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+
+/* Badges */
+.badge-genero-masculino {
+  background-color: #3498db;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.badge-genero-femenino {
+  background-color: #e74c3c;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* Scroll personalizado para listas largas */
+.scrollable {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* Botones */
+.primary-button {
+  background-color: #2980b9;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.primary-button:hover {
+  background-color: #21618c;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-logo {
+  height: 40px;
+  width: auto;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.dashboard-tabs {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.dashboard-tab {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.active-tab {
+  background-color: white;
+  border-bottom: 3px solid #2563eb;
+}
+
+.usuario-info {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}

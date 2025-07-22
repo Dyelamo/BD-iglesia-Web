@@ -14,7 +14,7 @@ export const useStoreEtapas = create((set) => ({
         try{
             const {data, error} = await supabase.from("Etapas").select("*");
             if(error) throw error;
-            console.log("Etapas cargadas:", data);
+            // console.log("Etapas cargadas:", data);
             set({ etapas: data, loading: false});
         }catch (error){
             set({ error: error.message, loading: false });

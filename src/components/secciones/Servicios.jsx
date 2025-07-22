@@ -20,14 +20,15 @@ const Servicios = ({ formData, handleChange, errores }) => {
       <h3 className="section-title">Servicios</h3>
       <div className="services-container">
         <div className="service-list">
+          <p>Servicios Comunidad</p>
           {serviciosComunidad?.map((servicio) => (
             <label key={servicio.id_servicio} className="service-item">
               <input
                 type="checkbox"
                 name="serviciosComunidad"
-                value={servicio.nombre_servicio}
+                value={servicio.id_servicio}
                 checked={formData.serviciosComunidad.includes(
-                  servicio.nombre_servicio
+                  servicio.id_servicio
                 )}
                 onChange={handleChange}
                 className="service-checkbox"
@@ -42,14 +43,15 @@ const Servicios = ({ formData, handleChange, errores }) => {
         
 
         <div className="service-list">
+          <p>Servicios Parroquia</p>
           {serviciosParroquia?.map((servicio) => (
             <label key={servicio.id_servicio} className="service-item">
               <input
                 type="checkbox"
                 name="serviciosParroquia"
-                value={servicio.nombre_servicio}
+                value={servicio.id_servicio}
                 checked={formData.serviciosParroquia.includes(
-                  servicio.nombre_servicio
+                  servicio.id_servicio
                 )}
                 onChange={handleChange}
                 className="service-checkbox"
