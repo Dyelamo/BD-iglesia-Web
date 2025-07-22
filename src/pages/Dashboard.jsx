@@ -6,6 +6,7 @@ import FiltroBusqueda from "../components/filtroBusqueda";
 import TarjetaRegistro from "../components/TarjetaRegistro";
 import { useEffect } from "react";
 import { useStorePersona } from "../supabase/storePersona";
+import { useStoreUsuarios } from "../supabase/storeUsuarios";
 
 const Dashboard = () => {
   const [registros, setRegistros] = useState([]);
@@ -21,6 +22,8 @@ const Dashboard = () => {
   const [filtrados, setFiltrados] = useState([]);
 
   const { persona, fetchPersona, loading, error } = useStorePersona();
+
+  const { currentUsuario } = useStoreUsuarios();
 
   useEffect(() => {
     fetchPersona();
@@ -82,7 +85,9 @@ const Dashboard = () => {
           <h1 className="dashboard-title">Dashboard de Registros</h1>
         </div>
 
-        <div className="usuario-info">👤 Diego Yelamo</div>
+        <div className="usuario-info">
+          <p>👤 {currentUsuario?.user_name}</p>
+        </div>
       </div>
 
       <Estadisticas registros={registros} setRegistros={setRegistros} />
