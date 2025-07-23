@@ -78,11 +78,11 @@ const Dashboard = () => {
       <div className="dashboard-header">
         <div className="logo-container">
           <img
-            src="../pages/logo-diocesis.jpg"
+            src="../../public/images/logo-diocesis.jpg"
             alt="Logo Comunidad"
             className="dashboard-logo"
           />
-          <h1 className="dashboard-title">Dashboard de Registros</h1>
+          <h1 className="dashboard-title">Pequeñas Comunidades Diocesis de Valleduapar</h1>
         </div>
 
         <div className="usuario-info">
