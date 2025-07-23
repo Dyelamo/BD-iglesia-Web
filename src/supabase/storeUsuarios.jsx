@@ -1,5 +1,5 @@
 import {supabase} from "./supabase.config";
-import bcrypt from "bcryptjs";
+//import bcrypt from "bcryptjs";
 import { create } from "zustand";
 
 export const useStoreUsuarios = create((set) => ({
