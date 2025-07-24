@@ -33,7 +33,49 @@ export const useStorePersona = create((set) => ({
 
     obtenerCantidadGeneros: async () => {
         
-    }
+    },
+
+    filtrarFeligreses: async (
+        nombre_apellido = null,
+        genero = null,
+        id_zona = null,
+        id_parroquia = null,
+        ids_servicio_comunidad = null,
+        ids_servicio_parroquia = null,
+        limit = 50,
+        offset = 0,
+    ) => {
+        set({ loading: true, error: null });
+        try {
+            const { data, error } = await supabase.rpc('filtrar_feligreses', {
+                nombre_apellido,
+                genero,
+                id_zona,
+                id_parroquia,
+                ids_servicio_comunidad,
+                ids_servicio_parroquia,
+                limit,
+                offset
+            });
+
+            if (error) throw error;
+
+            set({ persona: data, loading: false });
+
+            return data; // ✅ <-- NECESARIO para usar los datos en el componente
+        } catch (error) {
+            set({ error: error.message, loading: false });
+            console.error("Error al filtrar feligreses:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al filtrar feligreses',
+                text: error.message,
+            });
+
+            return []; // ❗️Evita errores al intentar usar "resultado" en Dashboard
+        }
+    },
+
 
 
     
