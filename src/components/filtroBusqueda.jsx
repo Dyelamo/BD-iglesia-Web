@@ -28,12 +28,32 @@ const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
     fetchServicioParroquia();
   }, []);
 
+  // const handleChange = (e) => {
+  //   setFitro({
+  //     ...filtro,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
   const handleChange = (e) => {
-    setFitro({
-      ...filtro,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value, multiple, options } = e.target;
+
+    if (multiple) {
+      const values = Array.from(options)
+        .filter((o) => o.selected)
+        .map((o) => o.value);
+      setFitro({
+        ...filtro,
+        [name]: values,
+      });
+    } else {
+      setFitro({
+        ...filtro,
+        [name]: value,
+      });
+    }
   };
+
 
   const limpiarFiltros = () => {
     setFitro({
@@ -41,8 +61,8 @@ const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
       zona: "Todas las zonas",
       parroquia: "Todas las parroquias",
       genero: "Todos los géneros",
-      servicioComunidad: "Todos los servicios",
-      servicioParroquia: "Todos los servicios",
+      servicioComunidad: [],
+      servicioParroquia: [],
     });
   };
 
@@ -131,11 +151,15 @@ const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
           <label>Servicio Comunidad</label>
           <select
             name="servicioComunidad"
+            multiple
             value={filtro.servicioComunidad}
-            onChange={handleChange}>
-            <option>Todos los servicios</option>
+            onChange={handleChange}
+          >
+            <option disabled>Todos los servicios</option>
             {serviciosComunidad.map((s) => (
-              <option key={s.id_servicio} value={s.id_servicio}>{s.nombre_servicio}</option>
+              <option key={s.id_servicio} value={s.id_servicio}>
+                {s.nombre_servicio}
+              </option>
             ))}
           </select>
         </div>
@@ -144,11 +168,15 @@ const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
           <label>Servicio Parroquia</label>
           <select
             name="servicioParroquia"
+            multiple
             value={filtro.servicioParroquia}
-            onChange={handleChange}>
-            <option>Todos los servicios</option>
+            onChange={handleChange}
+          >
+            <option disabled>Todos los servicios</option>
             {serviciosParroquia.map((s) => (
-              <option key={s.id_servicio} value={s.id_servicio}>{s.nombre_servicio}</option>
+              <option key={s.id_servicio} value={s.id_servicio}>
+                {s.nombre_servicio}
+              </option>
             ))}
           </select>
         </div>

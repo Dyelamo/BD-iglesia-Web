@@ -15,8 +15,8 @@ const Dashboard = () => {
     zona: "Todas las zonas",
     parroquia: "Todas las parroquias",
     genero: "Todos los géneros",
-    servicioComunidad: "Todos los servicios",
-    servicioParroquia: "Todos los servicios",
+    servicioComunidad: [],
+    servicioParroquia: [],
   });
 
 
@@ -30,8 +30,10 @@ const Dashboard = () => {
       p_genero: filtro.genero !== "Todos los géneros" ? filtro.genero : null,
       p_id_zona: filtro.zona !== "Todas las zonas" ? parseInt(filtro.zona) : null,
       p_id_parroquia: filtro.parroquia !== "Todas las parroquias" ? parseInt(filtro.parroquia) : null,
-      p_ids_servicio_comunidad: filtro.servicioComunidad !== "Todos los servicios" ? [parseInt(filtro.servicioComunidad)] : null,
-      p_ids_servicio_parroquia: filtro.servicioParroquia !== "Todos los servicios" ? [parseInt(filtro.servicioParroquia)] : null,
+      // p_ids_servicio_comunidad: filtro.servicioComunidad !== "Todos los servicios" ? [parseInt(filtro.servicioComunidad)] : null,
+      // p_ids_servicio_parroquia: filtro.servicioParroquia !== "Todos los servicios" ? [parseInt(filtro.servicioParroquia)] : null,
+      p_ids_servicio_comunidad: filtro.servicioComunidad.length > 0 ? filtro.servicioComunidad.map(Number) : null,
+      p_ids_servicio_parroquia: filtro.servicioParroquia.length > 0 ? filtro.servicioParroquia.map(Number) : null,
       p_limit: 50,
       p_offset: 0
     };
