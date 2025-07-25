@@ -61,6 +61,7 @@ const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
       zona: "Todas las zonas",
       parroquia: "Todas las parroquias",
       genero: "Todos los géneros",
+      estado_civil: "Todos los estados",
       servicioComunidad: [],
       servicioParroquia: [],
     });
@@ -72,7 +73,8 @@ const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
       valor !== "Todas las zonas" &&
       valor !== "Todas las parroquias" &&
       valor !== "Todos los géneros" &&
-      valor !== "Todos los servicios"
+      valor !== "Todos los servicios" &&
+      valor !== "Todos los estados" 
     );
   });
 
@@ -144,6 +146,17 @@ const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
             <option>Todos los géneros</option>
             <option value="femenino">Femenino</option>
             <option value="masculino">Masculino</option>
+          </select>
+        </div>
+
+        <div className="filtro-item">
+          <label>Estado Civil</label>
+          <select name="estado_civil" value={filtro.estado_civil} onChange={handleChange}>
+            <option>Todos los estados</option>
+            <option value="Soltero">Soltero</option>
+            <option value="Casado">Casado</option>
+            <option value="Divorciado">Divorciado</option>
+            <option value="Viudo">Viudo</option>
           </select>
         </div>
 
