@@ -1,12 +1,12 @@
 import React from "react";
 import "../styles/dashboard.css";
-import { FaFilter, FaTimes } from "react-icons/fa";
+import { FaFilter, FaTimes, FaSearch } from "react-icons/fa";
 import { useEffect } from "react";
 
 import { useStoreParroquias } from "../supabase/storeParroquias";
 import { useStoreServicios } from "../supabase/storeServicios";
 
-const FiltrosBusqueda = ({ filtro, setFitro }) => {
+const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
   const {
     parroquias,
     fetchParroquias,
@@ -28,12 +28,32 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
     fetchServicioParroquia();
   }, []);
 
+  // const handleChange = (e) => {
+  //   setFitro({
+  //     ...filtro,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
   const handleChange = (e) => {
-    setFitro({
-      ...filtro,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value, multiple, options } = e.target;
+
+    if (multiple) {
+      const values = Array.from(options)
+        .filter((o) => o.selected)
+        .map((o) => o.value);
+      setFitro({
+        ...filtro,
+        [name]: values,
+      });
+    } else {
+      setFitro({
+        ...filtro,
+        [name]: value,
+      });
+    }
   };
+
 
   const limpiarFiltros = () => {
     setFitro({
@@ -41,8 +61,9 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
       zona: "Todas las zonas",
       parroquia: "Todas las parroquias",
       genero: "Todos los géneros",
-      servicioComunidad: "Todos los servicios",
-      servicioParroquia: "Todos los servicios",
+      estado_civil: "Todos los estados",
+      servicioComunidad: [],
+      servicioParroquia: [],
     });
   };
 
@@ -52,7 +73,8 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
       valor !== "Todas las zonas" &&
       valor !== "Todas las parroquias" &&
       valor !== "Todos los géneros" &&
-      valor !== "Todos los servicios"
+      valor !== "Todos los servicios" &&
+      valor !== "Todos los estados" 
     );
   });
 
@@ -69,6 +91,15 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
               <FaTimes /> Limpiar Filtros
             </button>
           )}
+
+          <button 
+              onClick={onFiltrar} 
+              className="btn-filtrar"
+              disabled={loading}
+          >
+              <FaSearch /> {loading ? 'Filtrando...' : 'Aplicar Filtros'}
+          </button>
+
           <button className="btn-descargar">📥 Descargar Registros</button>
         </div>
       </div>
@@ -91,7 +122,7 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
           <select name="zona" value={filtro.zona} onChange={handleChange}>
             <option>Todas las zonas</option>
             {zonas.map((z) => (
-              <option key={z.id_zona}>{z.nombre_zona}</option>
+              <option key={z.id_zona} value={z.id_zona}>{z.nombre_zona}</option>
             ))}
           </select>
         </div>
@@ -104,7 +135,7 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
             onChange={handleChange}>
             <option>Todas las parroquias</option>
             {parroquias.map((p) => (
-              <option key={p.id_parroquia}>{p.nombre_parroquia}</option>
+              <option key={p.id_parroquia} value={p.id_parroquia}>{p.nombre_parroquia}</option>
             ))}
           </select>
         </div>
@@ -113,8 +144,19 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
           <label>Género</label>
           <select name="genero" value={filtro.genero} onChange={handleChange}>
             <option>Todos los géneros</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+          </select>
+        </div>
+
+        <div className="filtro-item">
+          <label>Estado Civil</label>
+          <select name="estado_civil" value={filtro.estado_civil} onChange={handleChange}>
+            <option>Todos los estados</option>
+            <option value="Soltero">Soltero</option>
+            <option value="Casado">Casado</option>
+            <option value="Divorciado">Divorciado</option>
+            <option value="Viudo">Viudo</option>
           </select>
         </div>
 
@@ -122,11 +164,15 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
           <label>Servicio Comunidad</label>
           <select
             name="servicioComunidad"
+            multiple
             value={filtro.servicioComunidad}
-            onChange={handleChange}>
-            <option>Todos los servicios</option>
+            onChange={handleChange}
+          >
+            <option disabled>Todos los servicios</option>
             {serviciosComunidad.map((s) => (
-              <option key={s.id_servicio}>{s.nombre_servicio}</option>
+              <option key={s.id_servicio} value={s.id_servicio}>
+                {s.nombre_servicio}
+              </option>
             ))}
           </select>
         </div>
@@ -135,11 +181,15 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
           <label>Servicio Parroquia</label>
           <select
             name="servicioParroquia"
+            multiple
             value={filtro.servicioParroquia}
-            onChange={handleChange}>
-            <option>Todos los servicios</option>
+            onChange={handleChange}
+          >
+            <option disabled>Todos los servicios</option>
             {serviciosParroquia.map((s) => (
-              <option key={s.id_servicio}>{s.nombre_servicio}</option>
+              <option key={s.id_servicio} value={s.id_servicio}>
+                {s.nombre_servicio}
+              </option>
             ))}
           </select>
         </div>
