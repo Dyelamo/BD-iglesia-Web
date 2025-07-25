@@ -1,12 +1,12 @@
 import React from "react";
 import "../styles/dashboard.css";
-import { FaFilter, FaTimes } from "react-icons/fa";
+import { FaFilter, FaTimes, FaSearch } from "react-icons/fa";
 import { useEffect } from "react";
 
 import { useStoreParroquias } from "../supabase/storeParroquias";
 import { useStoreServicios } from "../supabase/storeServicios";
 
-const FiltrosBusqueda = ({ filtro, setFitro }) => {
+const FiltrosBusqueda = ({ filtro, setFitro, onFiltrar, loading }) => {
   const {
     parroquias,
     fetchParroquias,
@@ -69,6 +69,15 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
               <FaTimes /> Limpiar Filtros
             </button>
           )}
+
+          <button 
+              onClick={onFiltrar} 
+              className="btn-filtrar"
+              disabled={loading}
+          >
+              <FaSearch /> {loading ? 'Filtrando...' : 'Aplicar Filtros'}
+          </button>
+
           <button className="btn-descargar">📥 Descargar Registros</button>
         </div>
       </div>
@@ -91,7 +100,7 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
           <select name="zona" value={filtro.zona} onChange={handleChange}>
             <option>Todas las zonas</option>
             {zonas.map((z) => (
-              <option key={z.id_zona}>{z.nombre_zona}</option>
+              <option key={z.id_zona} value={z.id_zona}>{z.nombre_zona}</option>
             ))}
           </select>
         </div>
@@ -104,7 +113,7 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
             onChange={handleChange}>
             <option>Todas las parroquias</option>
             {parroquias.map((p) => (
-              <option key={p.id_parroquia}>{p.nombre_parroquia}</option>
+              <option key={p.id_parroquia} value={p.id_parroquia}>{p.nombre_parroquia}</option>
             ))}
           </select>
         </div>
@@ -113,8 +122,8 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
           <label>Género</label>
           <select name="genero" value={filtro.genero} onChange={handleChange}>
             <option>Todos los géneros</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
           </select>
         </div>
 
@@ -126,7 +135,7 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
             onChange={handleChange}>
             <option>Todos los servicios</option>
             {serviciosComunidad.map((s) => (
-              <option key={s.id_servicio}>{s.nombre_servicio}</option>
+              <option key={s.id_servicio} value={s.id_servicio}>{s.nombre_servicio}</option>
             ))}
           </select>
         </div>
@@ -139,7 +148,7 @@ const FiltrosBusqueda = ({ filtro, setFitro }) => {
             onChange={handleChange}>
             <option>Todos los servicios</option>
             {serviciosParroquia.map((s) => (
-              <option key={s.id_servicio}>{s.nombre_servicio}</option>
+              <option key={s.id_servicio} value={s.id_servicio}>{s.nombre_servicio}</option>
             ))}
           </select>
         </div>
