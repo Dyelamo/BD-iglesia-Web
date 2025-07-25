@@ -1,97 +1,95 @@
 import React, { useState, useEffect } from "react";
 import "../styles/login.css";
-import {  FaLock, FaUser } from "react-icons/fa";
-
-const imagenes = [
-  "../../public/images/iglesia1.jpg",
-  "../../public/images/iglesia2.jpg",
-  "../../public/images/iglesia3.jpg"
-];
+import { FaLock, FaUser } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { useStoreUsuarios } from "../supabase/storeUsuarios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [indexImagen, setIndexImagen] = useState(0);
-  const [correo, setCorreo] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [user_name, setUserName] = useState("");
+  const [password, setContrasena] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const { autenticarUsuario, error, currentUsuario, loading } =
+    useStoreUsuarios();
+  const navigate = useNavigate(); // <-- hook correcto para redirigir
 
-  useEffect(() => {
-    const intervalo = setInterval(() => {
-      setIndexImagen((prev) => (prev + 1) % imagenes.length);
-    }, 5000);
-    return () => clearInterval(intervalo);
-  }, []);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Iniciar sesión con", correo, contrasena);
-    // Lógica real se conecta a Supabase
+    setSubmitted(true);
+    await autenticarUsuario(user_name, password);
   };
 
+  useEffect(() => {
+    if (currentUsuario) {
+      Swal.fire({
+        icon: "success",
+        title: "Inicio de sesión exitoso",
+        text: `Bienvenido ${currentUsuario.user_name}`,
+      }).then(() => {
+        navigate("/Dashboard"); 
+      });
+    }
+  }, [currentUsuario, navigate]);
+
   return (
-    <div className="login-container">
-      <div
-        className="login-fondo"
-        style={{ backgroundImage: `url(${imagenes[indexImagen]})` }}
-      ></div>
+    <div className="login-wrapper">
+      <div className="login-logo-section">
+        <img
+          src="/images/logo-diocesis.jpg"
+          alt="Logo"
+          className="login-logo"
+        />
+        <h1 className="login-title">Pequeñas Comunidades</h1>
+        <p className="login-subtitle">Dieocesis de Valledupar</p>
+      </div>
 
-      <div className="login-contenido">
-        <div className="login-info">
-          <div className="logo-nombre">
-            <img src="../../public/images/logo-diocesis.jpg" alt="Logo" className="logo-login" />
-            <h1>Sistema Parroquial</h1>
-            <p className="subtitulo">Gestión Comunitaria</p>
-          </div>
-          <h2 className="bienvenida">Bienvenido</h2>
-          <p className="descripcion">
-            Accede al sistema de gestión de registros comunitarios y fortalece
-            los lazos de nuestra comunidad parroquial.
+      <div className="login-panel">
+        <form onSubmit={handleSubmit} className="login-form">
+          <h2 className="form-title">Iniciar Sesión</h2>
+          <p className="form-description">
+            Ingresa tus credenciales para acceder
           </p>
-          <ul className="caracteristicas">
-            <li>• Gestión de registros comunitarios</li>
-            <li>• Seguimiento de servicios pastorales</li>
-            <li>• Reportes y estadísticas detalladas</li>
-          </ul>
-        </div>
 
-        <div className="login-formulario">
-          <form onSubmit={handleSubmit}>
-            <h2>Iniciar Sesión</h2>
-            <p className="login-descripcion">Ingresa tus credenciales para acceder al dashboard</p>
+          <div className="input-group">
+            <FaUser className="icono" />
+            <input
+              type="text"
+              placeholder="Ingresa tu usuario"
+              value={user_name}
+              onChange={(e) => setUserName(e.target.value)}
+              required
+            />
+          </div>
 
-            <div className="input-group">
-              <FaUser className="icono" />
-              <input
-                type="text"
-                placeholder="Usuario"
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-                required
-              />
+          <div className="input-group">
+            <FaLock className="icono" />
+            <input
+              type="password"
+              placeholder="Ingresa tu contraseña"
+              value={password}
+              onChange={(e) => setContrasena(e.target.value)}
+              required
+            />
+          </div>
+
+          {submitted && error && (
+            <div className="error-message">
+              <p>{error}</p>
             </div>
+          )}
 
-            <div className="input-group">
-              <FaLock className="icono" />
-              <input
-                type="password"
-                placeholder="Contraseña"
-                value={contrasena}
-                onChange={(e) => setContrasena(e.target.value)}
-                required
-              />
-            </div>
-
-            <button type="submit" className="btn-iniciar">
-              Iniciar Sesión
-            </button>
-          </form>
-        </div>
+          <button type="submit" className="btn-login" disabled={loading}>
+            {loading ? "Validando..." : "Iniciar Sesión"}
+          </button>
+        </form>
       </div>
 
       <footer className="login-footer">
         <p>© 2024 Sistema Parroquial. Todos los derechos reservados.</p>
-        <p>Pastoral Juvenil - Jóvenes comprometidos con Cristo</p>
+        <p>Empresea desarrolladora - JED Industry</p>
       </footer>
     </div>
   );
 };
 
-export {Login};
+export { Login };

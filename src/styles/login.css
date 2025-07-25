@@ -1,153 +1,148 @@
-/* Contenedor principal */
-.login-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  background: linear-gradient(to bottom, #f2f7fc, #eaf1fb);
+}
+
+.login-wrapper {
   display: flex;
   flex-direction: column;
-}
-
-/* Fondo tipo carrusel */
-.login-fondo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.5);
-  z-index: -1;
-  transition: background-image 1s ease-in-out;
-}
-
-/* Contenido general dividido */
-.login-contenido {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 100%;
-  padding: 40px 60px;
-  color: white;
-  z-index: 1;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-/* Sección izquierda */
-.login-info {
-  max-width: 50%;
-}
+/* LOGO Y ENCABEZADO */
 
-.logo-nombre {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.login-logo-section {
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.logo-login {
-  width: 60px;
-  height: 60px;
-}
-
-.logo-nombre h1 {
-  font-size: 28px;
-  margin: 0;
-}
-
-.subtitulo {
-  font-size: 16px;
-  color: #ddd;
-  margin-top: -8px;
-}
-
-.bienvenida {
-  font-size: 36px;
-  font-weight: bold;
+.login-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
   margin-bottom: 10px;
 }
 
-.descripcion {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.caracteristicas {
-  list-style: none;
-  padding-left: 0;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* Sección derecha - formulario */
-.login-formulario {
-  background: white;
-  border-radius: 12px;
-  padding: 40px;
-  width: 500px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
-  color: #333;
-}
-
-.login-formulario h2 {
-  margin-top: 0;
-  font-size: 22px;
+.login-title {
+  font-size: 1.8rem;
   font-weight: bold;
-  text-align: center;
+  color: #1e1e1e;
 }
 
-.login-descripcion {
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 25px;
-  color: #666;
+.login-subtitle {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-top: 4px;
 }
+
+/* PANEL DE FORMULARIO */
+
+.login-panel {
+  background-color: #fff;
+  padding: 30px 32px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-title {
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #1f2937;
+}
+
+.form-description {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* INPUTS */
 
 .input-group {
   position: relative;
-  margin-bottom: 20px;
 }
 
 .input-group input {
-  width: 96%;
-  padding: 10px 10px 10px 35px;
+  width: 100%;
+  padding: 10px 38px 10px 38px;
+  border: 1px solid #d1d5db;
   border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb33;
 }
 
 .icono {
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 12px;
   transform: translateY(-50%);
-  color: #888;
+  color: #9ca3af;
+  font-size: 14px;
 }
 
-.btn-iniciar {
-  width: 100%;
-  background: #3f51b5;
-  color: white;
+/* BOTÓN */
+
+.btn-login {
+  background-color: #2563eb;
+  color: #fff;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
   border: none;
   border-radius: 6px;
-  padding: 12px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
-.btn-iniciar:hover {
-  background: #2c3ca2;
+.btn-login:hover {
+  background-color: #1d4ed8;
 }
 
-/* Footer */
-.login-footer {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
+.btn-login:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* MENSAJE DE ERROR */
+
+.error-message p {
+  color: red;
+  font-size: 0.875rem;
   text-align: center;
-  font-size: 13px;
-  color: white;
-  z-index: 1;
+}
+
+/* FOOTER */
+
+.login-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
 }
