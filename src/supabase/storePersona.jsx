@@ -5,35 +5,15 @@ import Swal from "sweetalert2";
 export const useStorePersona = create((set) => ({
     persona: null,
     error: null,
+    error2: null,
     loading: false,
     currentPersona: null,
 
+    // NUEVOS ESTADOS PARA LAS ESTADÍSTICAS
+    total: 0,
+    total_hombres: 0,
+    total_mujeres: 0,
 
-    fetchPersona: async() => {
-        set({ loading: true, error: null });
-        try {
-            const { data, error } = await supabase.rpc('obtener_personas_con_servicios6');
-            console.log( data);
-            if (error) throw error;
-            set({ persona: data, loading: false });
-        } catch (error) {
-            set({ error: error.message, loading: false });
-            console.error("Error al cargar la persona:", error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al cargar la persona',
-                text: error.message,
-            });
-        }
-    },
-
-    obtenerTotalRegistros: async () => {
-
-    },
-
-    obtenerCantidadGeneros: async () => {
-        
-    },
 
     filtrarFeligreses: async (
         p_nombre_apellido = null,
@@ -46,18 +26,7 @@ export const useStorePersona = create((set) => ({
         p_limit = 10,
         p_offset = 0,
     ) => {
-        set({ loading: true, error: null });
-        console.log("Filtrando feligreses con los siguientes parámetros:", {
-            p_nombre_apellido,
-            p_genero,
-            p_id_zona,
-            p_id_parroquia,
-            p_estado_civil,
-            p_ids_servicio_comunidad,
-            p_ids_servicio_parroquia,
-            p_limit,
-            p_offset,
-        })
+        set({ loading: true, error: null, error2: null });
         try {
             const { data, error } = await supabase.rpc("filtrar_feligreses2", {
                 p_nombre_apellido,
@@ -71,11 +40,35 @@ export const useStorePersona = create((set) => ({
                 p_offset,
             });
 
-            if (error) throw error;
+            const { data: dataStats, error2} = await supabase.rpc("filtrar_feligreses2_count",{
+                p_nombre_apellido,
+                p_genero,
+                p_id_zona,
+                p_estado_civil,
+                p_id_parroquia,
+                p_ids_servicio_comunidad,
+                p_ids_servicio_parroquia,
+            });
 
-            set({ persona: data, loading: false });
+            if (error) throw error;
+            if (error2) throw error2;
+            console.log("dataStats:", dataStats);
+
+            const stats = dataStats?.[0] || {};
+
+            // set({ persona: data, loading: false });
+            set({
+                persona: data,
+                total: stats.total || 0,
+                total_hombres: stats.total_hombres || 0,
+                total_mujeres: stats.total_mujeres || 0,
+                loading: false,
+            });
 
             console.log("Datos filtrados:", data);
+            console.log("Estadísticas:", stats);
+
+
             return data; // ✅ <-- NECESARIO para usar los datos en el componente
             
         } catch (error) {
