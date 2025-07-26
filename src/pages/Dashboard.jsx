@@ -10,7 +10,6 @@ import { useStorePersona } from "../supabase/storePersona";
 import { useStoreUsuarios } from "../supabase/storeUsuarios";
 
 const Dashboard = () => {
-  const [registros, setRegistros] = useState([]);
   const [filtro, setFiltro] = useState({
     nombre: "",
     zona: "Todas las zonas",
@@ -21,7 +20,7 @@ const Dashboard = () => {
     estado_civil: "Todos los estados",
   });
 
-  const { persona, loading, error, filtrarFeligreses } = useStorePersona();
+  const { persona, loading, error, filtrarFeligreses, total, total_hombres, total_mujeres } = useStorePersona();
 
   const { currentUsuario } = useStoreUsuarios();
 
@@ -51,31 +50,46 @@ const Dashboard = () => {
         filtro.servicioParroquia.length > 0
           ? filtro.servicioParroquia.map(Number)
           : null,
-      p_limit: 30,
+      p_limit: 2,
       p_offset: 0,
     };
   };
 
   useEffect(() => {
     // fetchPersona();
-    filtrarFeligreses();
+    // filtrarFeligreses();
+    handleFiltrar();
   }, []);
 
   // Filtros
   const handleFiltrar = async () => {
-    const params = mapFiltroToApiParams(filtro);
-    await filtrarFeligreses(
-      params.p_nombre_apellido,
-      params.p_genero,
-      params.p_id_zona,
-      params.p_id_parroquia,
-      params.p_estado_civil,
-      params.p_ids_servicio_comunidad,
-      params.p_ids_servicio_parroquia,
-      params.p_limit,
-      params.p_offset
-    );
+    const params = {
+      ...mapFiltroToApiParams(filtro),
+      p_limit: registrosPorPagina,
+      p_offset: (paginaActual - 1) * registrosPorPagina,
+    }
+      await filtrarFeligreses(
+        params.p_nombre_apellido,
+        params.p_genero,
+        params.p_id_zona,
+        params.p_id_parroquia,
+        params.p_estado_civil,
+        params.p_ids_servicio_comunidad,
+        params.p_ids_servicio_parroquia,
+        params.p_limit,
+        params.p_offset
+      );
   };
+
+  //DATA NECESARIA PARA LA PAGINACION
+  const [paginaActual, setPaginaActual] = useState(1); // Página 1 al iniciar
+  const [registrosPorPagina] = useState(2); // Fijo por ahora
+  const [cantidadTotal, setCantidadTotal] = useState(0); // Total de registros desde la base
+
+  useEffect(() => {
+    handleFiltrar(); // Carga cuando cambia de página
+  }, [paginaActual]);
+
 
   return (
     <div className="dashboard-container">
@@ -96,7 +110,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <Estadisticas registros={registros} setRegistros={setRegistros} />
+      <Estadisticas
+        total={total} 
+        total_hombres={total_hombres} 
+        total_mujeres={total_mujeres}
+      />
       <FiltroBusqueda
         filtro={filtro}
         setFitro={setFiltro}
@@ -140,6 +158,30 @@ const Dashboard = () => {
           )}
         </div>
       )}
+
+      {tabActiva === "registros" && (
+        <div className="paginacion-container">
+          <button 
+            onClick={() => setPaginaActual(p => Math.max(1, p - 1))}
+            disabled={paginaActual === 1}
+          >
+            ◀ Anterior
+          </button>
+
+          <span>Página {paginaActual} de {Math.ceil(total / registrosPorPagina)}</span>
+
+          <button 
+            onClick={() => setPaginaActual(p => 
+              p < Math.ceil(total / registrosPorPagina) ? p + 1 : p
+            )}
+            disabled={paginaActual >= Math.ceil(total / registrosPorPagina)}
+          >
+            Siguiente ▶
+          </button>
+        </div>
+      )}
+
+      {/* Componente de gestión de usuarios */}
 
       <GestionUsuarios visible={tabActiva === "usuarios"} />
     </div>

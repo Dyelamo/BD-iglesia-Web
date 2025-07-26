@@ -363,3 +363,27 @@
   font-weight: 500;
   color: #374151;
 }
+
+
+/* ESTILOS PAGINACION FINAL  */
+.paginacion-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.paginacion-container button {
+  padding: 8px 16px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.paginacion-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
