@@ -27,7 +27,7 @@ function GestionUsuarios({ visible }) {
           <h2>
             <i className="fa-solid fa-gear"></i> Gestión de Usuarios
           </h2>
-          {/* <button className="btn-nuevo">+ Nuevo Usuario</button> */}
+          <button className="btn-nuevo">+ Nuevo Usuario</button>
         </div>
 
         {loading && <p>Cargando usuarios...</p>}
