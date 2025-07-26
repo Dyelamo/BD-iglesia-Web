@@ -159,26 +159,29 @@ const Dashboard = () => {
         </div>
       )}
 
-      <div className="paginacion-container">
-        <button 
-          onClick={() => setPaginaActual(p => Math.max(1, p - 1))}
-          disabled={paginaActual === 1}
-        >
-          ◀ Anterior
-        </button>
+      {tabActiva === "registros" && (
+        <div className="paginacion-container">
+          <button 
+            onClick={() => setPaginaActual(p => Math.max(1, p - 1))}
+            disabled={paginaActual === 1}
+          >
+            ◀ Anterior
+          </button>
 
-        <span>Página {paginaActual} de {Math.ceil(total / registrosPorPagina)}</span>
+          <span>Página {paginaActual} de {Math.ceil(total / registrosPorPagina)}</span>
 
-        <button 
-          onClick={() => setPaginaActual(p => 
-            p < Math.ceil(total / registrosPorPagina) ? p + 1 : p
-          )}
-          disabled={paginaActual >= Math.ceil(total / registrosPorPagina)}
-        >
-          Siguiente ▶
-        </button>
-      </div>
+          <button 
+            onClick={() => setPaginaActual(p => 
+              p < Math.ceil(total / registrosPorPagina) ? p + 1 : p
+            )}
+            disabled={paginaActual >= Math.ceil(total / registrosPorPagina)}
+          >
+            Siguiente ▶
+          </button>
+        </div>
+      )}
 
+      {/* Componente de gestión de usuarios */}
 
       <GestionUsuarios visible={tabActiva === "usuarios"} />
     </div>

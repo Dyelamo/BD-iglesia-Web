@@ -29,17 +29,17 @@ export const useStoreUsuarios = create((set) => ({
         }
     },
 
-     obtenerUsuarios: async () => {
-    set({ loading: true, error: null });
-    try {
-      const { data, error } = await supabase.from("Usuarios").select("*");
-      if (error) throw error;
-      set({ listaUsuarios: data, loading: false });
-    } catch (error) {
-      set({ error: error.message, loading: false });
-      console.error("Error al obtener usuarios:", error);
-    }
-  },
+    obtenerUsuarios: async () => {
+      set({ loading: true, error: null });
+      try {
+        const { data, error } = await supabase.from("Usuarios").select("*");
+        if (error) throw error;
+        set({ listaUsuarios: data, loading: false });
+      } catch (error) {
+        set({ error: error.message, loading: false });
+        console.error("Error al obtener usuarios:", error);
+      }
+    },
 
   crearUsuario: async (nuevoUsuario) => {
     set({ loading: true, error: null });
