@@ -10,7 +10,6 @@ import { useStorePersona } from "../supabase/storePersona";
 import { useStoreUsuarios } from "../supabase/storeUsuarios";
 
 const Dashboard = () => {
-  const [registros, setRegistros] = useState([]);
   const [filtro, setFiltro] = useState({
     nombre: "",
     zona: "Todas las zonas",
@@ -21,7 +20,7 @@ const Dashboard = () => {
     estado_civil: "Todos los estados",
   });
 
-  const { persona, loading, error, filtrarFeligreses } = useStorePersona();
+  const { persona, loading, error, filtrarFeligreses, total, total_hombres, total_mujeres } = useStorePersona();
 
   const { currentUsuario } = useStoreUsuarios();
 
@@ -96,7 +95,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <Estadisticas registros={registros} setRegistros={setRegistros} />
+      <Estadisticas
+        total={total} 
+        total_hombres={total_hombres} 
+        total_mujeres={total_mujeres}
+      />
       <FiltroBusqueda
         filtro={filtro}
         setFitro={setFiltro}

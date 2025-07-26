@@ -52,7 +52,6 @@ export const useStorePersona = create((set) => ({
 
             if (error) throw error;
             if (error2) throw error2;
-            console.log("dataStats:", dataStats);
 
             const stats = dataStats?.[0] || {};
 
@@ -65,15 +64,12 @@ export const useStorePersona = create((set) => ({
                 loading: false,
             });
 
-            console.log("Datos filtrados:", data);
-            console.log("Estadísticas:", stats);
 
 
             return data; // ✅ <-- NECESARIO para usar los datos en el componente
             
         } catch (error) {
             set({ error: error.message, loading: false });
-            console.error("Error al filtrar feligreses:", error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error al filtrar feligreses',
