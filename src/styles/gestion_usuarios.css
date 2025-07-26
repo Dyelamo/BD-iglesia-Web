@@ -1,0 +1,109 @@
+.usuarios-wrapper {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+}
+
+.gestion-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.gestion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.btn-nuevo {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.usuarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.usuario-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.usuario-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.icono-rol {
+  font-size: 1.8rem;
+  color: #3b82f6;
+}
+
+.usuario-detalle {
+  text-align: right;
+}
+
+.rol {
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.rol.administrador {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.rol.editor {
+  background-color: #e0e7ff;
+  color: #1e3a8a;
+}
+
+.rol.consultor {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.usuario-acciones button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 0.4rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-editar {
+  background-color: #facc15;
+  color: #111827;
+}
+
+.btn-eliminar {
+  background-color: #ef4444;
+  color: white;
+}
+
+.p-content{
+  float: right;
+  margin-left: 20px; /* Ajusta el valor según sea necesario */
+        
+}

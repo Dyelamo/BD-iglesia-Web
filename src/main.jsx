@@ -23,7 +23,6 @@ createRoot(document.getElementById('root')).render(
               </PrivateRoute>
             }
           />
-
         </Routes>  
   </BrowserRouter>
 )

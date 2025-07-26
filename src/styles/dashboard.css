@@ -71,6 +71,19 @@
   cursor: pointer;
 }
 
+.btn-filtrar {
+   background-color: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2c72f3;
+  cursor: pointer;
+}
+
 .label-filtro {
   font-weight: 500;
   display: block;
